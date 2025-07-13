@@ -6,6 +6,7 @@ public class Product {
     private String productId;
     private String productCode;
     private String productName;
+    private String description;
     private String categoryId;
     private String categoryName;
     private double price;
@@ -37,6 +38,14 @@ public class Product {
 
     public void setProductName(String productName) {
         this.productName = productName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getCategoryId() {

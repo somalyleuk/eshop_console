@@ -7,11 +7,12 @@ import com.eshope_console.dao.*;
 import com.eshope_console.service.*;
 import com.eshope_console.view.*;
 import com.eshope_console.controller.ShopController;
+import com.eshope_console.controller.ReadProductController;
 
 public class Main {
     public static void main(String[] args) {
         try {
-            System.out.println("🔄 Testing database connection...");
+            System.out.println("Testing database connection...");
             DatabaseConfig.testConnection();
 
             UserDAO userDAO = new UserDAO();
@@ -22,14 +23,19 @@ public class Main {
             ProductService productService = new ProductService(productDAO);
             CartService cartService = new CartService(productService);
             OrderService orderService = new OrderService(orderDAO, productService);
+            ReadProductService readProductService = new ReadProductService(productService);
 
             Scanner scanner = new Scanner(System.in);
             MenuView menuView = new MenuView(scanner);
             ConsoleView consoleView = new ConsoleView();
 
+            ReadProductController readProductController = new ReadProductController(
+                    scanner, consoleView, readProductService, productService
+            );
+
             ShopController controller = new ShopController(
                     scanner, menuView, consoleView,
-                    authService, productService, cartService, orderService
+                    authService, productService, cartService, orderService, readProductController
             );
 
             controller.start();

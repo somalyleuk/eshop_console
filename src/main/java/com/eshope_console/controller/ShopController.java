@@ -19,11 +19,13 @@ public class ShopController {
     private final ProductService productService;
     private final CartService cartService;
     private final OrderService orderService;
+    private final ReadProductController readProductController;
     private User currentUser = null;
 
     public ShopController(Scanner scanner, MenuView menuView, ConsoleView consoleView,
                           AuthService authService, ProductService productService,
-                          CartService cartService, OrderService orderService) {
+                          CartService cartService, OrderService orderService,
+                          ReadProductController readProductController) {
         this.scanner = scanner;
         this.menuView = menuView;
         this.consoleView = consoleView;
@@ -31,6 +33,7 @@ public class ShopController {
         this.productService = productService;
         this.cartService = cartService;
         this.orderService = orderService;
+        this.readProductController = readProductController;
     }
 
     public void start() {
@@ -91,7 +94,8 @@ public class ShopController {
             case 2 -> handleSearchProducts();
             case 3 -> handleCartManagement();
             case 4 -> handleOrderHistory();
-            case 5 -> handleLogout();
+            case 5 -> handleReadProductOperations();
+            case 6 -> handleLogout();
         }
     }
 
@@ -235,6 +239,10 @@ public class ShopController {
             consoleView.showError(e.getMessage());
             menuView.pressEnterToContinue();
         }
+    }
+
+    private void handleReadProductOperations() {
+        readProductController.showReadProductMenu();
     }
 
     private void handleLogout() {

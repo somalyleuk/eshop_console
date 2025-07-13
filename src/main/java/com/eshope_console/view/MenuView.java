@@ -30,9 +30,10 @@ public class MenuView {
         System.out.println("2. 🔍 Search Products");
         System.out.println("3. 🛒 Cart Management");
         System.out.println("4. 📋 Order History");
-        System.out.println("5. 🚪 Logout");
+        System.out.println("5. 📊 Product (10M Products)");
+        System.out.println("6. 🚪 Logout");
         System.out.println("========================================");
-        return InputValidator.getValidInt(scanner, "Choose an option: ", 1, 5);
+        return InputValidator.getValidInt(scanner, "Choose an option: ", 1, 6);
     }
 
     public int showCartMenu() {

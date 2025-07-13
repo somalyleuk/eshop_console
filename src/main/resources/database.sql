@@ -9,6 +9,10 @@ DROP TABLE IF EXISTS users CASCADE;
 CREATE SCHEMA IF NOT EXISTS eshop;
 SET SEARCH_PATH = eshop;
 
+
+-- clear data from products table?
+psql -h localhost -U eshop -d eshop -c "TRUNCATE TABLE products CASCADE;"
+
 -- Create tables with VARCHAR IDs
 CREATE TABLE users (
     id VARCHAR(10) PRIMARY KEY,
